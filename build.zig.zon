@@ -2,7 +2,13 @@
     .name = .zstbi,
     .fingerprint = 0x3c971054ff1a412f,
     .version = "0.11.0-dev",
-    .minimum_zig_version = "0.15.1",
+    .dependencies = .{
+        .stb = .{
+            .url = "git+https://github.com/nothings/stb.git",
+            .hash = "N-V-__8AAN1DTgAKvlSQnjJwSg4ZY2JP5OHmzKOcA4BewA4Y",
+        },
+    },
+    .minimum_zig_version = "0.16.0",
     .paths = .{
         "build.zig",
         "build.zig.zon",

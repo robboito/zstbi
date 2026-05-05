@@ -4,11 +4,17 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
     const target = b.standardTargetOptions(.{});
 
+    const dep_stb = b.dependency("stb", .{
+        .optimize = optimize,
+        .target = target,
+    });
+
     const zstbi = b.addModule("root", .{
         .root_source_file = b.path("src/zstbi.zig"),
     });
 
-    zstbi.addIncludePath(b.path("libs/stbi"));
+    // zstbi.addIncludePath(b.path("libs/stbi"));
+    zstbi.addIncludePath(dep_stb.path("."));
     if (optimize == .Debug) {
         // TODO: Workaround for Zig bug.
         zstbi.addCSourceFile(.{
